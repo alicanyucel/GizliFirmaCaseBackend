@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Gizli.Infrastructure.Context
 {
-    internal sealed class ApplicationDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>, IUnitOfWork
+    public sealed class ApplicationDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>, IUnitOfWork
     {
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
@@ -22,5 +22,8 @@ namespace Gizli.Infrastructure.Context
             builder.Ignore<IdentityUserRole<Guid>>();
             builder.Ignore<IdentityUserClaim<Guid>>();
         }
+        
+       
+        public DbSet<AlarmLog> AlarmLogs { get; set; }
     }
 }

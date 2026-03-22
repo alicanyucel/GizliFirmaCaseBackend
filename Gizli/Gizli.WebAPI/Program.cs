@@ -1,7 +1,9 @@
 using DefaultCorsPolicyNugetPackage;
 using Gizli.Application;
 using Gizli.Infrastructure;
+using Gizli.Infrastructure.Context;
 using Gizli.WebAPI.Middlewares;
+using Gizli.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 
@@ -40,6 +42,9 @@ builder.Services.AddSwaggerGen(setup =>
                 {
                     { jwtSecuritySheme, Array.Empty<string>() }
                 });
+
+
+builder.Services.AddHostedService<TemperatureMonitorService>();
 });
 
 var app = builder.Build();
@@ -48,6 +53,19 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    try
+    {
+        db.Database.EnsureCreated();
+    }
+    catch
+    {
+        
+    }
 }
 
 app.UseHttpsRedirection();
