@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Gizli/Gizli.Application/Gizli.Application.csproj" />
+  <Project Path="Gizli/Gizli.Domain/Gizli.Domain.csproj" />
+  <Project Path="Gizli/Gizli.Infrastructure/Gizli.Infrastructure.csproj" />
+  <Project Path="Gizli/Gizli.WebAPI/Gizli.WebAPI.csproj" />
+</Solution>

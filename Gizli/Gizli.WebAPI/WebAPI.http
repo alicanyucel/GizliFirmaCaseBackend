@@ -1,0 +1,6 @@
+@Gizli.WebAPI_HostAddress = http://localhost:5193
+
+GET {{Gizli.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
